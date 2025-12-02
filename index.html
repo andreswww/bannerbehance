@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Scrolling Text Loop</title>
+<style>
+  :root{
+    --bg: #030019;
+    --text: #1EA0FF;
+    --size: 36px;
+  }
+  html,body{margin:0;height:100%}
+  body{
+    background: var(--bg);
+    font-family: "Montserrat", "Arial", sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .ticker-wrap{
+    width:100%;
+    overflow:hidden;
+    box-sizing:border-box;
+    padding:10px 0;
+  }
+
+  .ticker{
+    display:flex;
+    gap:40px;
+    white-space:nowrap;
+    align-items:center;
+    /* duplicamos la animación para que sea contínua y seamless */
+    animation: scroll 18s linear infinite;
+    font-weight:800;
+    font-size:var(--size);
+    letter-spacing:2px;
+    color:var(--text);
+  }
+
+  .ticker > span{
+    display:inline-block;
+    padding:0 8px;
+  }
+
+  /* duplicado del contenido para loop sin salto */
+  .ticker .repeat { margin-left: 60px; }
+
+  @keyframes scroll{
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* ajustar si tu texto ocupa menos/más */
+  }
+
+  /* Responsive: reduce tamaño en pantallas pequeñas */
+  @media (max-width:600px){
+    :root{ --size:22px; }
+  }
+</style>
+</head>
+<body>
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker" role="presentation">
+      <!-- Contenido original (repítelo o ajusta el texto) -->
+      <span>SEBAS BALDEON • 2025 • PORTFOLIO •</span>
+      <span>SEBAS BALDEON • 2025 • PORTFOLIO •</span>
+      <span>SEBAS BALDEON • 2025 • PORTFOLIO •</span>
+      <!-- duplicamos para mantener el loop fluido -->
+      <span class="repeat">SEBAS BALDEON • 2025 • PORTFOLIO •</span>
+      <span class="repeat">SEBAS BALDEON • 2025 • PORTFOLIO •</span>
+      <span class="repeat">SEBAS BALDEON • 2025 • PORTFOLIO •</span>
+    </div>
+  </div>
+</body>
+</html>
